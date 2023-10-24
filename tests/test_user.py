@@ -43,3 +43,26 @@ def test_non_identical_users_compare_nonequal():
     ]
     for other in others:
         assert user != other
+
+"""
+WHEN: we call `repr` on an instance of `User`
+THEN: it returns a string representation of `User` in the correct format
+    such that `user == eval(str(user))` for any valid instance of `User`
+"""
+def test_user_string_formats_correctly():
+    users = [
+        User(1, "example_user", "EXAMPLE_PASSWORD"),
+        User(2, "example_user", "EXAMPLE_PASSWORD"),
+        User(1, "different_user", "EXAMPLE_PASSWORD"),
+        User(1, "example_user", "DIFFERENT_PASSWORD"),
+    ]
+    representations = [
+        repr(user)
+        for user in users
+    ]
+    assert representations == [
+        "User(1, \'example_user\', \'EXAMPLE_PASSWORD\')",
+        "User(2, \'example_user\', \'EXAMPLE_PASSWORD\')",
+        "User(1, \'different_user\', \'EXAMPLE_PASSWORD\')",
+        "User(1, \'example_user\', \'DIFFERENT_PASSWORD\')",
+    ]
