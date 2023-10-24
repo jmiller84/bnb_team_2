@@ -16,3 +16,4 @@ class User:
             ]
         )
         return f"User({attributes_string})"
+
