@@ -1,5 +1,9 @@
-DROP TABLE IF EXISTS spaces;
+DROP TABLE IF EXISTS spaces CASCADE;
 DROP SEQUENCE IF EXISTS spaces_id_seq;
+DROP TABLE IF EXISTS users CASCADE;
+DROP SEQUENCE IF EXISTS users_id_seq;
+DROP TABLE IF EXISTS bookings CASCADE;
+DROP SEQUENCE IF EXISTS bookings_id_seq;
 
 CREATE SEQUENCE IF NOT EXISTS spaces_id_seq;
 CREATE TABLE spaces (
@@ -9,6 +13,39 @@ CREATE TABLE spaces (
     price DECIMAL(6,2)
 );
 
+CREATE SEQUENCE IF NOT EXISTS users_id_seq;
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255),
+    password VARCHAR(255)
+);
+
+CREATE SEQUENCE IF NOT EXISTS bookings_id_seq;
+CREATE TABLE bookings (
+    id SERIAL PRIMARY KEY,
+    user_id INT,
+    space_id INT,
+    date DATE,
+    constraint fk_user foreign key (user_id)
+    references users(id) ON DELETE CASCADE,
+    constraint fk_space foreign key (space_id)
+    references spaces(id) ON DELETE CASCADE
+);
+
 INSERT INTO spaces (name, description, price) VALUES ('Cottage', 'A nice cottage', 27.50);
 INSERT INTO spaces (name, description, price) VALUES ('Villa', 'A mediterranean villa with a sea view', 70.00);
 INSERT INTO spaces (name, description, price) VALUES ('Alpine lodge', 'A cosy ski lodge with wood-burning fire', 95.00);
+
+INSERT INTO users (username, password) VALUES ('topdev', 'makers456!');
+INSERT INTO users (username, password) VALUES ('pikachu82', 'thunderbolt*');
+INSERT INTO users (username, password) VALUES ('boardgameking', 'catan1234!');
+INSERT INTO users (username, password) VALUES ('yogaguru', 'downwarddog!');
+
+
+INSERT INTO bookings (user_id, space_id, date) VALUES (1, 1, '2023-10-30');
+INSERT INTO bookings (user_id, space_id, date) VALUES (2, 1, '2023-09-25');
+INSERT INTO bookings (user_id, space_id, date) VALUES (2, 3, '2023-10-10');
+INSERT INTO bookings (user_id, space_id, date) VALUES (3, 1, '2023-09-06');
+INSERT INTO bookings (user_id, space_id, date) VALUES (1, 2, '2023-10-07');
+INSERT INTO bookings (user_id, space_id, date) VALUES (4, 2, '2023-09-15');
+
