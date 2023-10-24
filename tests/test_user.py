@@ -20,3 +20,26 @@ def test_user_constructs_correctly():
     assert user.id == 1
     assert user.username == "example_user"
     assert user.password == "EXAMPLE_PASSWORD"
+
+"""
+WHEN: we compare two identical instances of `User` using `==`
+THEN: it evaluates to True
+"""
+def test_identical_users_compare_equal():
+    user_1 = User(1, "example_user", "EXAMPLE_PASSWORD")
+    user_2 = User(1, "example_user", "EXAMPLE_PASSWORD")
+    assert user_1 == user_2
+
+"""
+WHEN: we compare two non-identical instances of `User` using `!=`
+THEN: it evaluates to True
+"""
+def test_non_identical_users_compare_nonequal():
+    user = User(1, "example_user", "EXAMPLE_PASSWORD")
+    others = [
+        User(2, "example_user", "EXAMPLE_PASSWORD"),
+        User(1, "different_user", "EXAMPLE_PASSWORD"),
+        User(1, "example_user", "DIFFERENT_PASSWORD"),
+    ]
+    for other in others:
+        assert user != other

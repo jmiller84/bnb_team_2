@@ -3,3 +3,6 @@ class User:
         self.id = id
         self.username = username
         self.password = password
+
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
