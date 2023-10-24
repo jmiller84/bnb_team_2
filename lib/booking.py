@@ -1,3 +1,5 @@
+
+
 class Booking:
 
     def __init__(self, id, user_id, space_id, date):
@@ -11,3 +13,4 @@ class Booking:
         
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
+    
