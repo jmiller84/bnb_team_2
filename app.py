@@ -1,11 +1,60 @@
 import os
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 from lib.database_connection import get_flask_database_connection
+from lib.booking_repository import BookingRepository
 
 # Create a new Flask app
 app = Flask(__name__)
 
 # == Your Routes Here ==
+
+#------Home Page------
+@app.route('/', methods=["GET"]) 
+def home_page():
+    connection = get_flask_database_connection(app)
+
+    return render_template('home.html')
+
+
+#------Login Page------
+@app.route('/login', methods=["GET"]) 
+def login_page():
+    connection = get_flask_database_connection(app)
+
+@app.route('/login', methods=["POST"]) 
+def post_login_details():
+    connection = get_flask_database_connection(app)
+
+#------Signup Page------
+@app.route('/signup', methods=["GET"]) 
+def signup_page():
+    connection = get_flask_database_connection(app)
+
+#------Single Space Page------
+@app.route('/spaces/<space_id>', methods=["GET"]) 
+def show_space_info_and_calendar():
+    connection = get_flask_database_connection(app)
+
+@app.route('/spaces/<space_id>', methods=["POST"]) 
+def select_date_for_space():
+    connection = get_flask_database_connection(app)
+
+#------Booking Confirmation Page------
+@app.route('/spaces/<space_id>/confirm', methods=["GET"]) 
+def show_booking_info_for_confirmation():
+    connection = get_flask_database_connection(app)
+
+@app.route('/spaces/<space_id>/confirm', methods=["POST"]) 
+def confirm_booking():
+    connection = get_flask_database_connection(app)
+
+    return redirect('users/<user_id>')
+
+#------User Bookings Page------
+@app.route('/users/<user_id>', methods=["GET"]) 
+def view_user_bookings():
+    connection = get_flask_database_connection(app)
+
 
 
 
