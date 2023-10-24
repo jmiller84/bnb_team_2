@@ -1,4 +1,4 @@
-from lib.spaces import Space
+from lib.space import Space
 
 """
 Check Space constructs
