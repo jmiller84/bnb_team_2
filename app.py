@@ -43,7 +43,6 @@ apply_confirm_booking_routes(app)
 
 from routes.user_page_routes import apply_user_page_routes
 apply_user_page_routes(app)
-    return render_template('users/user_bookings.html')
 
 
 # These lines start the server if you run this file directly
