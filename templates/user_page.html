@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My page: {{username}}</title>
+    </head>
+    <body>
+        <h1>{{username}}'s Bookings</h1>
+
+        <div class="user-bookings">
+            {% for booking in bookings %}
+            <div class="booking-list">
+                Booking #{{booking["booking_id"]}}<br>
+                You're staying at {{booking["space_name"]}} on {{booking["booking_date"]}}
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>

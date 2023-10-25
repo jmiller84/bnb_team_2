@@ -3,6 +3,9 @@ from flask import Flask, request, render_template, redirect, session
 from lib.database_connection import get_flask_database_connection
 from lib.booking_repository import BookingRepository
 from lib.calendar import *
+from lib.space_repository import SpaceRepository
+from lib.user_repository import UserRepository
+from datetime import datetime
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -10,26 +13,19 @@ app = Flask(__name__)
 # == Your Routes Here ==
 
 #------Home Page------
-@app.route('/', methods=["GET"]) 
-def home_page():
-    connection = get_flask_database_connection(app)
-
-    return render_template('home.html')
+from routes.homepage_routes import apply_home_page_routes
+apply_home_page_routes(app)
 
 
 #------Login Page------
-@app.route('/login', methods=["GET"]) 
-def login_page():
-    connection = get_flask_database_connection(app)
 
-@app.route('/login', methods=["POST"]) 
-def post_login_details():
-    connection = get_flask_database_connection(app)
+from login_routes import apply_login_routes
+apply_login_routes(app)
 
 #------Signup Page------
-@app.route('/signup', methods=["GET"]) 
-def signup_page():
-    connection = get_flask_database_connection(app)
+
+from signup_routes import apply_signup_routes
+apply_signup_routes(app)
 
 #------Single Space Page------
 
@@ -44,10 +40,9 @@ apply_confirm_booking_routes(app)
 
 
 #------User Bookings Page------
-@app.route('/users/<user_id>', methods=["GET"]) 
-def view_user_bookings(user_id):
-    connection = get_flask_database_connection(app)
 
+from routes.user_page_routes import apply_user_page_routes
+apply_user_page_routes(app)
     return render_template('users/user_bookings.html')
 
 
