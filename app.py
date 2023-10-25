@@ -1,7 +1,8 @@
 import os
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, session
 from lib.database_connection import get_flask_database_connection
 from lib.booking_repository import BookingRepository
+from lib.calendar import *
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -31,31 +32,23 @@ def signup_page():
     connection = get_flask_database_connection(app)
 
 #------Single Space Page------
-@app.route('/spaces/<space_id>', methods=["GET"]) 
-def show_space_info_and_calendar():
-    connection = get_flask_database_connection(app)
 
-@app.route('/spaces/<space_id>', methods=["POST"]) 
-def select_date_for_space():
-    connection = get_flask_database_connection(app)
+from routes.single_space_routes import apply_single_space_routes
+apply_single_space_routes(app)
+
 
 #------Booking Confirmation Page------
-@app.route('/spaces/<space_id>/confirm', methods=["GET"]) 
-def show_booking_info_for_confirmation():
-    connection = get_flask_database_connection(app)
 
-@app.route('/spaces/<space_id>/confirm', methods=["POST"]) 
-def confirm_booking():
-    connection = get_flask_database_connection(app)
+from routes.confirm_booking_routes import apply_confirm_booking_routes
+apply_confirm_booking_routes(app)
 
-    return redirect('users/<user_id>')
 
 #------User Bookings Page------
 @app.route('/users/<user_id>', methods=["GET"]) 
-def view_user_bookings():
+def view_user_bookings(user_id):
     connection = get_flask_database_connection(app)
 
-
+    return render_template('users/user_bookings.html')
 
 
 # These lines start the server if you run this file directly

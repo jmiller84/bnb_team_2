@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+</head>
+<body>
+
+    <h2>SINGLE SPACE PAGE</h2>
+    <br>
+    <div>
+        <p>INSERT SPACE INFO</p>
+    </div>
+    <br>
+
+    <div class="cal_table_container">
+        <table border="0" cellpadding="0" cellspacing="0" class="cal_table_format">
+            <tr><th colspan="7" class="cal_table_header">{{ str_month }}{{ current_year }}</th></tr>
+            <tr><th class="cal_table_day_headings">Mon</th><th class="cal_table_day_headings">Tue</th><th class="cal_table_day_headings">Wed</th><th class="cal_table_day_headings">Thu</th><th class="cal_table_day_headings">Fri</th><th class="cal_table_day_headings">Sat</th><th class="cal_table_day_headings">Sun</th></tr>
+        
+            {% for week in cal %}
+            <tr>
+                {% for day in week %}
+                    <td class="cal_table_day">
+                        {% if day.month == current_month %}
+                            {% if day not in unavailable_dates %}
+                                <form action="/spaces/1" method="POST">
+                                    <input class="day_button_available" type="submit" name="select_date_button" value=" {{ day.day }} ">              
+                                </form>
+                            {% else %}
+                                {{ day.day }}
+                                
+                                <!-- <form action="/spaces/1" method="POST">
+                                    <input class="day_button_available" type="submit" name="select_date_button" value=" {{ day.day }}">              
+                                </form> -->
+                            {% endif %}                        
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+    
+</body>
+</html>
