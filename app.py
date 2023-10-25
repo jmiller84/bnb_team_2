@@ -3,6 +3,8 @@ from flask import Flask, request, render_template, redirect
 from lib.database_connection import get_flask_database_connection
 from lib.booking_repository import BookingRepository
 from lib.space_repository import SpaceRepository
+from lib.user_repository import UserRepository
+from datetime import datetime
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -53,9 +55,19 @@ def confirm_booking():
     return redirect('users/<user_id>')
 
 #------User Bookings Page------
-@app.route('/users/<user_id>', methods=["GET"]) 
-def view_user_bookings():
+@app.route('/users/<int:user_id>', methods=["GET"]) 
+def view_user_bookings(user_id):
     connection = get_flask_database_connection(app)
+    repository = UserRepository(connection)
+    rows = repository.find_user_by_user_id_with_space_info_as_dictionary(user_id)
+    username = rows[0]['username']
+    booking_details = [
+        {'booking_id': row['booking_id'],
+        'space_name': row['name'],
+        'booking_date': (row['date']).strftime("%d %B %Y"),
+        'price': row['price']} for row in rows]
+    print(booking_details)
+    return render_template('user_page.html', username=username, bookings=booking_details)
 
 
 
