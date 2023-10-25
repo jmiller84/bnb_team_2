@@ -2,6 +2,7 @@ import os
 from flask import Flask, request, render_template, redirect
 from lib.database_connection import get_flask_database_connection
 from lib.booking_repository import BookingRepository
+from lib.space_repository import SpaceRepository
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -12,8 +13,9 @@ app = Flask(__name__)
 @app.route('/', methods=["GET"]) 
 def home_page():
     connection = get_flask_database_connection(app)
-
-    return render_template('home.html')
+    repository = SpaceRepository(connection)
+    spaces = repository.all()
+    return render_template('home.html', spaces=spaces)
 
 
 #------Login Page------
