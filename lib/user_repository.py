@@ -21,3 +21,25 @@ class UserRepository:
         row = self._connection.execute("SELECT * FROM users WHERE id = %s", [user_id])
         user = User(row[0]['id'], row[0]['username'], row[0]['password'])
         return user
+    
+    def find_user_by_user_id_with_space_info_as_dictionary(self, user_id):
+        sql_query = """
+            SELECT
+                users.id AS user_id,
+                users.username,
+                spaces.id AS space_id,
+                spaces.name,
+                spaces.description,
+                spaces.price,
+                bookings.id AS booking_id,
+                bookings.date
+            FROM
+                users
+            JOIN
+                bookings ON bookings.user_id = users.id
+            JOIN spaces ON bookings.space_id = spaces.id
+            WHERE users.id = %s
+        """
+        results = self._connection.execute(sql_query, [user_id])
+        return results
+
