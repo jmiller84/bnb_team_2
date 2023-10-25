@@ -17,18 +17,14 @@ def home_page():
 
 
 #------Login Page------
-@app.route('/login', methods=["GET"]) 
-def login_page():
-    connection = get_flask_database_connection(app)
 
-@app.route('/login', methods=["POST"]) 
-def post_login_details():
-    connection = get_flask_database_connection(app)
+from login_routes import apply_login_routes
+apply_login_routes(app)
 
 #------Signup Page------
-@app.route('/signup', methods=["GET"]) 
-def signup_page():
-    connection = get_flask_database_connection(app)
+
+from signup_routes import apply_signup_routes
+apply_signup_routes(app)
 
 #------Single Space Page------
 @app.route('/spaces/<space_id>', methods=["GET"]) 
