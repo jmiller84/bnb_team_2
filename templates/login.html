@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Log in to MBnB</title>
+    </head>
+    <body>
+        <h1>Enter your login details</h1>
+        <form action="/login" method="post">
+            {% if could_not_log_in %}
+                <p data-testid="incorrect_login_details_message">
+                    No account exists with the specified username and password.
+                </p>
+            {% endif %}
+            <p>
+                <label for="username">Username: </label>
+                <input type="text" name="username" id="username" data-testid="username">
+            </p>
+            <p>
+                <label for="password">Password: </label>
+                <input type="text" name="password" id="password" data-testid="password">
+            </p>
+        </form>
+    </body>
+</html>
