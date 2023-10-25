@@ -6,6 +6,15 @@
 </head>
 <body>
     <h1>MBnB</h1>
-    
 </body>
+    <h2> </h2>
+    {% for space in spaces %}
+    <h4>
+        {{space.name}}
+    </h4>
+    <p>
+        {{space.description}}<br>
+        From £{{space.price}} per night!
+    </p>
+    {% endfor %}
 </html>
