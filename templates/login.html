@@ -7,10 +7,15 @@
     <body>
         <h1>Enter your login details</h1>
         <form action="/login" method="post">
-            {% if could_not_log_in %}
-                <p data-testid="incorrect_login_details_message">
-                    No account exists with the specified username and password.
+            {% if errors %}
+                <p data-testid="error-details">
+                    Your login submission had the following errors:
                 </p>
+                <p><ul>
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul></p>
             {% endif %}
             <p>
                 <label for="username">Username: </label>
@@ -19,6 +24,9 @@
             <p>
                 <label for="password">Password: </label>
                 <input type="text" name="password" id="password" data-testid="password">
+            </p>
+            <p>
+                <input type="submit" value="Submit form">
             </p>
         </form>
     </body>
