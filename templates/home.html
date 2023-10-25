@@ -1,5 +1,7 @@
 <html lang="en">
 <head>
+    <div class="navigation" align="right"><a href="/login">Login</a>   <a href="/signup">Create an account</a></p>
+    </div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MBnB Home Page</title>
@@ -7,14 +9,14 @@
 <body>
     <h1>MBnB</h1>
 </body>
-    <h2> </h2>
+
+    <h2>Spaces</h2>
     {% for space in spaces %}
-    <h4>
-        {{space.name}}
-    </h4>
-    <p>
-        {{space.description}}<br>
-        From £{{space.price}} per night!
-    </p>
+
+    <div class="space-container">
+        <div class="space-header">{{space.name}}</div>
+        <div class="space-description">{{space.description}}</div>
+        <div class="space-price">From £{{space.price}} per night!</div><br>
+    </div>
     {% endfor %}
 </html>
