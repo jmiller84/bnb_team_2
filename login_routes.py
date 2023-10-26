@@ -70,3 +70,11 @@ def apply_login_routes(app):
             'login.html',
             errors=error_messages
         ), 400
+
+    # Log out of account (if logged in)
+    # then redirect to homepage
+    @app.route('/logout', methods=["GET"])
+    def get_do_logout():
+        session.pop('user_id', None)
+        session.pop('username', None)
+    return redirect('/')
