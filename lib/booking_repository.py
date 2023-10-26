@@ -40,3 +40,6 @@ class BookingRepository:
         rows = self._connection.execute("SELECT * FROM bookings JOIN spaces ON bookings.space_id = spaces.id  WHERE confirmed = False and spaces.owner_id = %s", [user_id])
         bookings = [Booking(row['id'], row['user_id'], row['space_id'], row['date'] ) for row in rows]
         return bookings
+    
+    def update_booking_to_confirmed(self, booking_id):
+        self._connection.execute("UPDATE bookings SET confirmed = True WHERE id = %s", [booking_id])

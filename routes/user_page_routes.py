@@ -17,8 +17,21 @@ def apply_user_page_routes(app):
             {'booking_id': row['booking_id'],
             'space_name': row['name'],
             'booking_date': (row['date']).strftime("%d %B %Y"),
-            'price': row['price']} for row in rows]
+            'price': row['price'], 'confirmed':row['confirmed']} for row in rows]
         booking_repository = BookingRepository(connection)
         booking_requests = booking_repository.find_all_unconfirmed_booking_requests(user_id)
 
-        return render_template('user_page.html', username=username, bookings=booking_details, booking_requests=booking_requests)
+        return render_template('user_page.html', username=username, user_id=user_id, bookings=booking_details, booking_requests=booking_requests)
+    
+    @app.route('/users/<int:user_id>', methods=["POST"]) 
+    def set_status_of_request(user_id):
+        connection = get_flask_database_connection(app)
+        repository = BookingRepository(connection)
+
+        if "reject-booking" in request.form:
+            booking_id = request.form['reject-booking']
+            repository.delete(booking_id)
+        elif "confirm-booking" in request.form:
+            booking_id = request.form['confirm-booking']
+            repository.update_booking_to_confirmed(booking_id)
+        return redirect(f'/users/{user_id}')

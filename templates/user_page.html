@@ -12,10 +12,12 @@
 
         <div class="user-bookings">
             {% for booking in bookings %}
-            <div class="booking-list">
+            <li class="booking-list">
                 Booking #{{booking["booking_id"]}}<br>
-                You're staying at {{booking["space_name"]}} on {{booking["booking_date"]}}
-            </div>
+                You're staying at {{booking["space_name"]}} on {{booking["booking_date"]}}<br>
+                Request confirmed = {{booking["confirmed"]}}
+            </li>
+            <br>
             {% endfor %}
         </div>
         <h1> Requests for your spaces </h1>
@@ -25,6 +27,14 @@
             <div class="request-list">
                 Booking #{{request.id}}<br>
                 You have a request for {{request.space_id}} on {{request.date}}
+            <form action="/users/{{user_id}}" methods="POST">
+                <button type="submit" name="confirm-booking" value="{{request.id}}">Confirm Booking</button>
+            </form>
+
+            <form action="/users/{{user_id}}" methods="POST">
+                <button type="submit" name="reject-booking" value="{{request.id}}">Reject Booking</button>
+            </form>
+
             </div>
             {% endfor %}
     </body>
