@@ -37,9 +37,25 @@ class BookingRepository:
         return bookings
     
     def find_all_unconfirmed_booking_requests(self, user_id):
-        rows = self._connection.execute("SELECT * FROM bookings JOIN spaces ON bookings.space_id = spaces.id  WHERE confirmed = False and spaces.owner_id = %s", [user_id])
-        bookings = [Booking(row['id'], row['user_id'], row['space_id'], row['date'] ) for row in rows]
-        return bookings
+
+        sql_query = """
+                SELECT
+                    bookings.id as booking_id,
+                    bookings.user_id,
+                    bookings.space_id,
+                    bookings.date,
+                    bookings.confirmed,
+                    spaces.name,
+                    spaces.owner_id
+                FROM
+                    bookings
+                JOIN
+                    spaces ON bookings.space_id = spaces.id
+                WHERE spaces.owner_id = %s and confirmed = False
+                    """
+
+        rows = self._connection.execute(sql_query, [user_id])
+        return rows
     
     def update_booking_to_confirmed(self, booking_id):
         self._connection.execute("UPDATE bookings SET confirmed = True WHERE id = %s", [booking_id])

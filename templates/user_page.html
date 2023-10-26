@@ -25,14 +25,15 @@
         <div class="user-requests">
             {% for request in booking_requests %}
             <div class="request-list">
-                Booking #{{request.id}}<br>
-                You have a request for {{request.space_id}} on {{request.date}}
+                Booking #{{request['booking_id']}}<br>
+                You have a request for {{request['name']}} on {{request.date}}
+
             <form action="/users/{{user_id}}" methods="POST">
-                <button type="submit" name="confirm-booking" value="{{request.id}}">Confirm Booking</button>
+                <button type="submit" name="confirm-booking" value="{{request['booking_id']}}">Confirm Booking</button>
             </form>
 
             <form action="/users/{{user_id}}" methods="POST">
-                <button type="submit" name="reject-booking" value="{{request.id}}">Reject Booking</button>
+                <button type="submit" name="reject-booking" value="{{request['booking_id']}}">Reject Booking</button>
             </form>
 
             </div>
