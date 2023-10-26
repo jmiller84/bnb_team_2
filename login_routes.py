@@ -64,7 +64,7 @@ def apply_login_routes(app):
         if len(error_messages) == 0:
             session['user_id'] = correct_user.id
             session['username'] = correct_user.username
-            return redirect(f"/user/{session['user_id']}")
+            return redirect(f"/users/{session['user_id']}")
 
         return render_template(
             'login.html',
