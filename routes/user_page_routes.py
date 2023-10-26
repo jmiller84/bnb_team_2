@@ -11,7 +11,7 @@ def apply_user_page_routes(app):
     def view_user_bookings(user_id):
         connection = get_flask_database_connection(app)
         repository = UserRepository(connection)
-        rows = repository.find_user_by_user_id_with_space_info_as_dictionary(user_id)
+        rows = repository.find_bookings_by_user_id_with_space_info_as_dictionary(user_id)
         username = rows[0]['username']
         booking_details = [
             {'booking_id': row['booking_id'],

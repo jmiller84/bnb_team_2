@@ -20,9 +20,9 @@ class SpaceRepository:
         return spaces
     
     def create(self, space):
-        self._connection.execute("INSERT INTO spaces (name, description, price) VALUES (%s, %s, %s) RETURNING id", [space.name, space.description, space.price])
+        self._connection.execute("INSERT INTO spaces (name, description, price) VALUES (%s, %s, %s, %s) RETURNING id", [space.name, space.description, space.price, space.user_id])
 
-    def find_by_name(self, space_name):
+    def find_by_space_name(self, space_name):
         row = self._connection.execute("SELECT * from spaces WHERE name = %s", [space_name])
         space = Space(row[0]['id'], row[0]['name'], row[0]['description'], row[0]['price'])
         return space
@@ -31,4 +31,6 @@ class SpaceRepository:
         row = self._connection.execute("SELECT * from spaces WHERE id = %s", [space_id])
         space = Space(row[0]['id'], row[0]['name'], row[0]['description'], row[0]['price'])
         return space
+    
+    
 
