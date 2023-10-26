@@ -77,4 +77,4 @@ def apply_login_routes(app):
     def get_do_logout():
         session.pop('user_id', None)
         session.pop('username', None)
-    return redirect('/')
+        return redirect('/')
