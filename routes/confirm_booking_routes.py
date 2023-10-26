@@ -17,7 +17,7 @@ def apply_confirm_booking_routes(app):
 
         selected_date = session['selected_date']
         formatted_date = selected_date[:16]
-  
+
         return render_template('spaces/confirm_booking.html', space_info=space_info, formatted_date=formatted_date)
 
     @app.route('/spaces/<space_id>/confirm', methods=["POST"]) 
@@ -35,7 +35,8 @@ def apply_confirm_booking_routes(app):
                 id = None,
                 user_id = session.get('user_id', None),
                 space_id = int(space_id),
-                date = date
+                date = date,
+                confirmed = False
                 ))
             
             user_id = session.get('user_id', None)

@@ -19,8 +19,8 @@ CREATE TABLE spaces (
     name VARCHAR(255),
     description VARCHAR(255),
     price DECIMAL(6,2),
-    user_id int,
-    constraint fk_user foreign key (user_id)
+    owner_id int,
+    constraint fk_user foreign key (owner_id)
     references users(id) ON DELETE CASCADE
 );
 
@@ -30,6 +30,7 @@ CREATE TABLE bookings (
     user_id INT,
     space_id INT,
     date DATE,
+    confirmed BOOLEAN,
     constraint fk_user foreign key (user_id)
     references users(id) ON DELETE CASCADE,
     constraint fk_space foreign key (space_id)
@@ -41,16 +42,17 @@ INSERT INTO users (username, password) VALUES ('pikachu82', 'thunderbolt*');
 INSERT INTO users (username, password) VALUES ('boardgameking', 'catan1234!');
 INSERT INTO users (username, password) VALUES ('yogaguru', 'downwarddog!');
 
-INSERT INTO spaces (name, description, price, user_id) VALUES ('Cottage', 'A nice cottage', 27.50, 4);
-INSERT INTO spaces (name, description, price, user_id) VALUES ('Villa', 'A mediterranean villa with a sea view', 70.00, 2);
-INSERT INTO spaces (name, description, price, user_id) VALUES ('Alpine lodge', 'A cosy ski lodge with wood-burning fire', 95.00, 1);
-INSERT INTO spaces (name, description, price, user_id) VALUES ('Studio Apartment', 'A cool apartment in the centre of the bustling city', 102.00, 3);
-INSERT INTO spaces (name, description, price, user_id) VALUES ('Tent', 'A tent in a field of cows', 10.00, 2);
+INSERT INTO spaces (name, description, price, owner_id) VALUES ('Cottage', 'A nice cottage', 27.50, 4);
+INSERT INTO spaces (name, description, price, owner_id) VALUES ('Villa', 'A mediterranean villa with a sea view', 70.00, 2);
+INSERT INTO spaces (name, description, price, owner_id) VALUES ('Alpine lodge', 'A cosy ski lodge with wood-burning fire', 95.00, 1);
+INSERT INTO spaces (name, description, price, owner_id) VALUES ('Studio Apartment', 'A cool apartment in the centre of the bustling city', 102.00, 3);
+INSERT INTO spaces (name, description, price, owner_id) VALUES ('Tent', 'A tent in a field of cows', 10.00, 2);
 
-INSERT INTO bookings (user_id, space_id, date) VALUES (1, 1, '2023-10-30');
-INSERT INTO bookings (user_id, space_id, date) VALUES (2, 1, '2023-10-25');
-INSERT INTO bookings (user_id, space_id, date) VALUES (2, 3, '2023-10-10');
-INSERT INTO bookings (user_id, space_id, date) VALUES (3, 1, '2023-10-06');
-INSERT INTO bookings (user_id, space_id, date) VALUES (1, 2, '2023-10-07');
-INSERT INTO bookings (user_id, space_id, date) VALUES (4, 2, '2023-10-15');
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (1, 1, '2023-10-30', True);
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (2, 1, '2023-10-25', True);
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (2, 3, '2023-10-10', True);
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (3, 1, '2023-10-06', False);
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (1, 2, '2023-10-07', False);
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (4, 2, '2023-10-15', False);
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (4, 3, '2023-10-12', False);
 
