@@ -47,4 +47,3 @@ class UserRepository:
         results = self._connection.execute(sql_query, [user_id])
         return results
     
-
