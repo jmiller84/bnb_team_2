@@ -6,10 +6,10 @@
 </head>
 <body>
 
-    <h2>SINGLE SPACE PAGE</h2>
+    <h2>{{ space_info.name }}</h2>
     <br>
     <div>
-        <p>INSERT SPACE INFO</p>
+        <p>{{ space_info.description }}</p>
     </div>
     <br>
 
@@ -24,7 +24,7 @@
                     <td class="cal_table_day">
                         {% if day.month == current_month %}
                             {% if day not in unavailable_dates %}
-                                <form action="/spaces/<space_id>" method="POST">
+                                <form action="/spaces/{{space_info.id}}" method="POST">
                                     <input class="day_button_available" type="submit" name="select_date_button" value=" {{ day.day }} ">              
                                 </form>
                             {% else %}
