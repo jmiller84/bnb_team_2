@@ -3,11 +3,11 @@
 <head>
     <div class="navigation" align="right">
         {% if user_id %}
-            <p><a href="/login">Login</a></p>
-            <p><a href="/signup">Create an account</a></p>
+        <p><a href="/user/{{ user_id }}">My Profile</a></p>
+        <p><a href="/logout">Logout</a></p>
         {% else %}
-            <p><a href="/user/{{ user_id }}">My Profile</a></p>
-            <p><a href="/logout">Logout</a></p>
+        <p><a href="/login">Login</a></p>
+        <p><a href="/signup">Create an account</a></p>
         {% endif %}
     </div>
     <meta charset="UTF-8">
