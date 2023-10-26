@@ -5,6 +5,8 @@ from lib.booking_repository import BookingRepository
 
 # Create a new Flask app
 app = Flask(__name__)
+with open('flask_secret_key') as file:
+    app.secret_key = file.read()
 
 # == Your Routes Here ==
 
