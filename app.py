@@ -6,11 +6,12 @@ from lib.calendar import *
 from lib.space_repository import SpaceRepository
 from lib.user_repository import UserRepository
 from datetime import datetime
+from config import secret_key
 
 # Create a new Flask app
 app = Flask(__name__)
-with open('flask_secret_key') as file:
-    app.secret_key = file.read()
+# with open('flask_secret_key') as file:
+app.secret_key = secret_key
 
 # == Your Routes Here ==
 
