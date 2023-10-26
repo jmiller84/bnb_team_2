@@ -25,12 +25,12 @@ def test_list_all_spaces(db_connection):
 def test_create_a_new_space(db_connection):
     db_connection.seed("seeds/MBnB.sql")
     repository = SpaceRepository(db_connection)
-    repository.create(Space(None, 'Studio Flat', 'A cool city-centre location', 50.00))
+    repository.create(Space(None, 'Studio Flat', 'A cool city-centre location', 50.00, 3))
     assert repository.all() == [
-        Space(1, 'Cottage', 'A nice cottage', 27.50),
-        Space(2, 'Villa', 'A mediterranean villa with a sea view', 70.00),
-        Space(3, 'Alpine lodge', 'A cosy ski lodge with wood-burning fire', 95.00),
-        Space(4, 'Studio Flat', 'A cool city-centre location', 50.00)
+        Space(1, 'Cottage', 'A nice cottage', 27.50, 4),
+        Space(2, 'Villa', 'A mediterranean villa with a sea view', 70.00, 2),
+        Space(3, 'Alpine lodge', 'A cosy ski lodge with wood-burning fire', 95.00, 1),
+        Space(4, 'Studio Flat', 'A cool city-centre location', 50.00, 3)
     ]
 
 def test_find_space_by_name_returns_single_space(db_connection):

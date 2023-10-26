@@ -26,7 +26,7 @@ class UserRepository:
         user = User(row[0]['id'], row[0]['username'], row[0]['password'])
         return user
     
-    def find_user_by_user_id_with_space_info_as_dictionary(self, user_id):
+    def find_bookings_by_user_id_with_space_info_as_dictionary(self, user_id):
         sql_query = """
             SELECT
                 users.id AS user_id,
@@ -46,4 +46,5 @@ class UserRepository:
         """
         results = self._connection.execute(sql_query, [user_id])
         return results
+    
 
