@@ -18,8 +18,16 @@ def apply_confirm_booking_routes(app):
         connection = get_flask_database_connection(app)
 
         if "confirm_button" in request.form:
-            # user_id = session.get('user_id', None)
-            user_id = 1
+            
+            repository = BookingRepository(connection)
+
+            repository.create(  
+                user_id = session.get('user_id', None),
+                space_id = space_id,
+                date = session.get('selected_date', None)
+                )
+            
+            user_id = session.get('user_id', None)
             return redirect(f'/users/{user_id}')
             
         if "cancel_button" in request.form:
