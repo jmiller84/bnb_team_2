@@ -20,6 +20,8 @@ def apply_login_routes(app):
     # Process submitted login form
     @app.route('/login', methods=["POST"]) 
     def post_login_form_data():
+        connection = get_flask_database_connection(app)
+        error_messages = []
         if session.get('username', None) is not None:
             # User is already logged in
             return render_template(
@@ -42,8 +44,6 @@ def apply_login_routes(app):
             error_messages.append(
                 "The submitted password was too long (over 255 characters)."
             )
-        connection = get_flask_database_connection(app)
-        error_messages = []
         user_repository = UserRepository(connection)
         users_with_correct_username = [
             user for user in user_repository.all()
