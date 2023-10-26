@@ -1,6 +1,14 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <div class="navigation" align="right"><a href="/login">Login</a>   <a href="/signup">Create an account</a></p>
+    <div class="navigation" align="right">
+        {% if user_id %}
+        <p><a href="/users/{{ user_id }}">My Profile</a></p>
+        <p><a href="/logout">Logout</a></p>
+        {% else %}
+        <p><a href="/login">Login</a></p>
+        <p><a href="/signup">Create an account</a></p>
+        {% endif %}
     </div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +19,6 @@
 
     <h2>Spaces</h2>
     {% for space in spaces %}
-    
     <div class="space-container">
         <div class="space-header">{{space.name}}</div>
         <div class="space-description">{{space.description}}</div>

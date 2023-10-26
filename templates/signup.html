@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Create your MBnB account</title>
+    </head>
+    <body>
+        {% if user_is_logged_in %}
+            <p data-testid="already-logged-in-message">
+                You are already logged in.
+                If you are trying to create a new account,
+                please log out first.
+            </p>
+        {% else %}
+            <h1>Enter the username and password you would like to use</h1>
+            <p>Your password should be at least 8 characters long.</p>
+            <form action="/signup" method="post">
+                {% if errors %}
+                    <p data-testid="error-details">
+                        Your signup submission had the following errors:
+                    </p>
+                    <p><ul>
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul></p>
+                {% endif %}
+                <p>
+                    <label for="username">Username: </label>
+                    <input type="text" name="username" id="username" data-testid="username">
+                </p>
+                <p>
+                    <label for="password">Password: </label>
+                    <input type="text" name="password" id="password" data-testid="password">
+                </p>
+                <p>
+                    <input type="submit" value="Submit form">
+                </p>
+            </form>
+        {% endif %}
+    </body>
+</html>
