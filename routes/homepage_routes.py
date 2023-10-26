@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, session
 from lib.database_connection import get_flask_database_connection
 from lib.booking_repository import BookingRepository
 from lib.space_repository import SpaceRepository
@@ -12,7 +12,12 @@ def apply_home_page_routes(app):
         connection = get_flask_database_connection(app)
         repository = SpaceRepository(connection)
         spaces = repository.all()
-        return render_template('home.html', spaces=spaces)
+        user_id = session.get('user_id', None)
+        return render_template(
+            'home.html',
+            spaces=spaces,
+            user_id=user_id
+            )
     
 def apply_home_page_routes_POST(app):
     @app.route('/', methods=["POST"]) 
