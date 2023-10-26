@@ -8,16 +8,20 @@
 </head>
 <body>
     <h1>MBnB</h1>
-</body>
 
     <h2>Spaces</h2>
     {% for space in spaces %}
-    <form action="/" method="POST"
+    
     <div class="space-container">
         <div class="space-header">{{space.name}}</div>
         <div class="space-description">{{space.description}}</div>
         <div class="space-price">From £{{space.price}} per night!</div>
-        <button type="submit" name="book_now_button" value="{{space.id}}">Book Now!</button><br>
+        {% if session_active == True %}
+        <form action="/" method="POST">
+            <button type="submit" name="book_now_button" value="{{space.id}}">Book Now!</button><br>
+        </form>
+        {% endif %}
     </div>
     {% endfor %}
+</body>
 </html>
