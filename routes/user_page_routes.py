@@ -31,7 +31,11 @@ def apply_user_page_routes(app):
         if "reject-booking" in request.form:
             booking_id = request.form['reject-booking']
             repository.delete(booking_id)
+
+            return redirect(f'/users/{user_id}')
+        
         elif "confirm-booking" in request.form:
             booking_id = request.form['confirm-booking']
             repository.update_booking_to_confirmed(booking_id)
-        return redirect(f'/users/{user_id}')
+        
+            return redirect(f'/users/{user_id}')
