@@ -18,4 +18,7 @@ def apply_user_page_routes(app):
             'space_name': row['name'],
             'booking_date': (row['date']).strftime("%d %B %Y"),
             'price': row['price']} for row in rows]
-        return render_template('user_page.html', username=username, bookings=booking_details)
+        booking_repository = BookingRepository(connection)
+        booking_requests = booking_repository.find_all_unconfirmed_booking_requests(user_id)
+
+        return render_template('user_page.html', username=username, bookings=booking_details, booking_requests=booking_requests)

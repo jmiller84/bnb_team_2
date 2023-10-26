@@ -8,7 +8,7 @@
 
     </head>
     <body>
-        <h1>{{username}}'s Bookings</h1>
+        <h1>{{username}}'s Bookings for upcoming holidays</h1>
 
         <div class="user-bookings">
             {% for booking in bookings %}
@@ -18,5 +18,14 @@
             </div>
             {% endfor %}
         </div>
+        <h1> Requests for your spaces </h1>
+
+        <div class="user-requests">
+            {% for request in booking_requests %}
+            <div class="request-list">
+                Booking #{{request.id}}<br>
+                You have a request for {{request.space_id}} on {{request.date}}
+            </div>
+            {% endfor %}
     </body>
 </html>
