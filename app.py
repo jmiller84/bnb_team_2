@@ -16,6 +16,8 @@ app = Flask(__name__)
 from routes.homepage_routes import apply_home_page_routes
 apply_home_page_routes(app)
 
+from routes.homepage_routes import apply_home_page_routes_POST
+apply_home_page_routes_POST(app)
 
 #------Login Page------
 

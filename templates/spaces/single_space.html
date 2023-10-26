@@ -24,7 +24,7 @@
                     <td class="cal_table_day">
                         {% if day.month == current_month %}
                             {% if day not in unavailable_dates %}
-                                <form action="/spaces/1" method="POST">
+                                <form action="/spaces/<space_id>" method="POST">
                                     <input class="day_button_available" type="submit" name="select_date_button" value=" {{ day.day }} ">              
                                 </form>
                             {% else %}
