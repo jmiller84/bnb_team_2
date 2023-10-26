@@ -5,6 +5,7 @@ from lib.booking_repository import BookingRepository
 from lib.space_repository import SpaceRepository
 from lib.user_repository import UserRepository
 from datetime import datetime
+from flask import Flask, render_template, redirect, request, session
 
 def apply_home_page_routes(app):
     @app.route('/', methods=["GET"]) 
@@ -13,9 +14,11 @@ def apply_home_page_routes(app):
         repository = SpaceRepository(connection)
         spaces = repository.all()
         user_id = session.get('user_id', None)
+        session_active = (user_id is not None)
         return render_template(
             'home.html',
             spaces=spaces,
+            session_active=session_active,
             user_id=user_id
             )
     
