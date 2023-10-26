@@ -26,3 +26,9 @@ class SpaceRepository:
         row = self._connection.execute("SELECT * from spaces WHERE name = %s", [space_name])
         space = Space(row[0]['id'], row[0]['name'], row[0]['description'], row[0]['price'])
         return space
+    
+    def find_by_space_id(self, space_id):
+        row = self._connection.execute("SELECT * from spaces WHERE id = %s", [space_id])
+        space = Space(row[0]['id'], row[0]['name'], row[0]['description'], row[0]['price'])
+        return space
+
