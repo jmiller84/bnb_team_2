@@ -13,3 +13,9 @@ def apply_home_page_routes(app):
         repository = SpaceRepository(connection)
         spaces = repository.all()
         return render_template('home.html', spaces=spaces)
+    
+def apply_home_page_routes_POST(app):
+    @app.route('/', methods=["POST"]) 
+    def home_page_book_now_button():
+        space_id = request.form['book_now_button']
+        return redirect(f'/spaces/{space_id}')

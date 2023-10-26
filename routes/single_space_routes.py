@@ -11,9 +11,7 @@ def apply_single_space_routes(app):
     def show_space_info_and_calendar(space_id):
         connection = get_flask_database_connection(app)
         repository = BookingRepository(connection)
-
-        space_id = 1
-
+        
         unavailable_dates = repository.show_unavailable_dates_for_space(space_id)
 
         return render_template('/spaces/single_space.html', cal=cal, str_month=str_month, current_month=current_month, current_year=current_year, unavailable_dates = unavailable_dates)
@@ -25,7 +23,12 @@ def apply_single_space_routes(app):
         if "select_date_button" in request.form:
             selected_day = request.form['select_date_button']
             selected_date = date(int(current_year), int(current_month), int(selected_day))
+            print("Line 23 executed, we're in the if!")
             print(selected_date)
             # session['selected_date'] = selected_date
 
             return redirect('/spaces/<space_id>/confirm')
+        else:
+            print("Line 32 executed, we're NOT in the if :(!")
+            return "hello"
+        
