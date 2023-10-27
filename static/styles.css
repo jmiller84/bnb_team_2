@@ -1,0 +1,13 @@
+body {
+    background-color:#f77367;
+    @font-face {
+        font-family: myFirstFont;
+        src: url(sansation_bold.woff);
+    }
+}
+
+.space-header {
+    color:rgb(246, 232, 255);
+    font-weight: bold;
+
+}
