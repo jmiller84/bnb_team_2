@@ -36,8 +36,7 @@ class UserRepository:
                 spaces.description,
                 spaces.price,
                 bookings.id AS booking_id,
-                bookings.date,
-                bookings.confirmed
+                bookings.date
             FROM
                 users
             JOIN
