@@ -51,7 +51,9 @@ class BookingRepository:
                     bookings
                 JOIN
                     spaces ON bookings.space_id = spaces.id
-                WHERE spaces.owner_id = %s and confirmed = False
+                WHERE spaces.owner_id = %s 
+                and confirmed = False 
+                and spaces.owner_id != bookings.user_id
                     """
 
         rows = self._connection.execute(sql_query, [user_id])
