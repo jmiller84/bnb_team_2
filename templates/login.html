@@ -4,10 +4,11 @@
         <meta charset="utf-8">
         <title>Log in to MBnB</title>
         <link rel="stylesheet" type="text/css" href="static/styles.css">
-
     </head>
     <body>
+        <p><a href="/">Back to homepage</a></p>
         <h1>Enter your login details</h1>
+
         <form action="/login" method="post">
             {% if errors %}
                 <p data-testid="error-details">
