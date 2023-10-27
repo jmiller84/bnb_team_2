@@ -20,7 +20,8 @@ class SpaceRepository:
         return spaces
     
     def create(self, space):
-        self._connection.execute("INSERT INTO spaces (name, description, price) VALUES (%s, %s, %s, %s, %s) RETURNING id", [space.name, space.description, space.price, space.user_id])
+        space_id = self._connection.execute("INSERT INTO spaces (name, description, price) VALUES (%s, %s, %s, %s, %s) RETURNING id", [space.name, space.description, space.price, space.user_id])
+        return space_id['id']
 
     def find_by_space_name(self, space_name):
         row = self._connection.execute("SELECT * from spaces WHERE name = %s", [space_name])
