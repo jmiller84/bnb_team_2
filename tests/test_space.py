@@ -9,7 +9,7 @@ def test_new_space_constructs_correctly():
     assert space.name == "Cottage"
     assert space.description == "A relaxing cottage"
     assert space.price == 27.50
-    assert space.user_id == 4
+    assert space.owner_id == 4
 
 """
 Check string representation

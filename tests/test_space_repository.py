@@ -16,9 +16,11 @@ def test_list_all_spaces(db_connection):
     db_connection.seed("seeds/MBnB.sql")
     repository = SpaceRepository(db_connection)
     assert repository.all() == [
-        Space(1, 'Cottage', 'A nice cottage', 27.50),
-        Space(2, 'Villa', 'A mediterranean villa with a sea view', 70.00),
-        Space(3, 'Alpine lodge', 'A cosy ski lodge with wood-burning fire', 95.00)
+        Space(1, 'Cottage', 'A nice cottage', 27.50, 4),
+        Space(2, 'Villa', 'A mediterranean villa with a sea view', 70.00, 2),
+        Space(3, 'Alpine lodge', 'A cosy ski lodge with wood-burning fire', 95.00, 3),
+        Space(4, 'Studio Apartment', 'A cool apartment in the centre of the bustling city', 102.00, 3),
+        Space(5, 'Tent', 'A tent in a field of cows', 10.00, 2)
     ]
 
 
