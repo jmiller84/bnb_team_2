@@ -19,7 +19,7 @@ class UserRepository:
             "INSERT INTO users (username, password) VALUES (%s, %s) RETURNING id",
             [new_user.username, new_user.password])
         # Side effect: set the `id` of the User object passed as argument
-        new_user.id = new_user_id
+        new_user.id = new_user_id['id']
 
     def find_user_by_user_id(self, user_id):
         row = self._connection.execute("SELECT * FROM users WHERE id = %s", [user_id])
