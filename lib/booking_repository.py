@@ -7,7 +7,7 @@ class BookingRepository:
 
     def all(self):
         rows = self._connection.execute("SELECT * FROM bookings")
-        bookings = [Booking(row['id'], row['user_id'], row['space_id'], row['date']) for row in rows]
+        bookings = [Booking(row['id'], row['user_id'], row['space_id'], row['date'], row['confirmed']) for row in rows]
         return bookings
     
     def create(self, booking):
@@ -15,12 +15,12 @@ class BookingRepository:
     
     def find_by_user_id(self, user_id):
         rows = self._connection.execute("SELECT * FROM BOOKINGS WHERE user_id = %s", [user_id])
-        bookings = [Booking(row['id'], row['user_id'], row['space_id'], row['date']) for row in rows]
+        bookings = [Booking(row['id'], row['user_id'], row['space_id'], row['date'], row['confirmed']) for row in rows]
         return bookings
     
     def find_by_space_id(self, space_id):
         rows = self._connection.execute("SELECT * FROM BOOKINGS WHERE space_id = %s", [space_id])
-        bookings = [Booking(row['id'], row['user_id'], row['space_id'], row['date']) for row in rows]
+        bookings = [Booking(row['id'], row['user_id'], row['space_id'], row['date'], row['confirmed']) for row in rows]
         return bookings
 
     def show_unavailable_dates_for_space(self, space_id):
@@ -33,7 +33,7 @@ class BookingRepository:
 
     def find_confirmed_bookings_by_user_id(self, user_id):
         rows = self._connection.execute("SELECT * FROM BOOKINGS WHERE confirmed = True and user_id = %s", [user_id])
-        bookings = [Booking(row['id'], row['user_id'], row['space_id'], row['date']) for row in rows]
+        bookings = [Booking(row['id'], row['user_id'], row['space_id'], row['date'], row['confirmed']) for row in rows]
         return bookings
     
     def find_all_unconfirmed_booking_requests(self, user_id):
@@ -51,7 +51,9 @@ class BookingRepository:
                     bookings
                 JOIN
                     spaces ON bookings.space_id = spaces.id
-                WHERE spaces.owner_id = %s and confirmed = False
+                WHERE spaces.owner_id = %s 
+                and confirmed = False 
+                and spaces.owner_id != bookings.user_id
                     """
 
         rows = self._connection.execute(sql_query, [user_id])

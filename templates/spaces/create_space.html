@@ -14,7 +14,7 @@
             </p>
         {% else %}
             <h1>Enter details for the new space</h1>
-            <form action="/user/{{ user_id }}/create_space" method="post">
+            <form action="/users/{{ user_id }}/create_space" method="post">
                 {% if errors %}
                     <p data-testid="error-details">
                         Your signup submission had the following errors:
@@ -42,21 +42,21 @@
                 <p>
                     <label for="price_per_night">Price per night: </label>
                     <input
-                        type="number" value="price_per_night"
+                        type="number" name="price_per_night"
                         id="price_per_night" data-testid="price_per_night"
                     >
                 </p>
                 <p>
-                    <label for="first_available_night">First available night: </label>
+                    <label for="first_available_night">First unavailable night: </label>
                     <input
-                        type="date" value="first_available_night" min="{{ current_date }}"
+                        type="date" name="first_available_night" min="{{ current_date }}"
                         id="first_available_night" data-testid="first_available_night"
                     >
                 </p>
                 <p>
-                    <label for="last_available_night">Last available night: </label>
+                    <label for="last_available_night">Last unavailable night: </label>
                     <input
-                        type="date" value="last_available_night" min="{{ current_date }}"
+                        type="date" name="last_available_night" min="{{ current_date }}"
                         id="last_available_night" data-testid="last_available_night"
                     >
                 </p>
