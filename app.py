@@ -12,7 +12,6 @@ from config import secret_key
 app = Flask(__name__)
 # with open('flask_secret_key') as file:
 app.secret_key = secret_key
-
 # == Your Routes Here ==
 
 #------Home Page------
