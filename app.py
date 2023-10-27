@@ -48,6 +48,11 @@ apply_confirm_booking_routes(app)
 from routes.user_page_routes import apply_user_page_routes
 apply_user_page_routes(app)
 
+#------Create Space Page------
+
+from routes.create_space_routes import apply_create_space_routes
+apply_create_space_routes(app)
+
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database

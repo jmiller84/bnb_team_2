@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>List a new space on MBnB</title>
+        <link rel="stylesheet" type="text/css" href="../static/styles.css">
+    </head>
+    <body>
+        <p><a href="/">Back to homepage</a></p>
+        {% if not user_is_logged_in %}
+            <p data-testid="already-logged-in-message">
+                Please log in first before listing a new space.
+            </p>
+        {% else %}
+            <h1>Enter details for the new space</h1>
+            <form action="/user/{{ user_id }}/create_space" method="post">
+                {% if errors %}
+                    <p data-testid="error-details">
+                        Your signup submission had the following errors:
+                    </p>
+                    <p><ul>
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul></p>
+                {% endif %}
+                <p>
+                    <label for="name">Name: </label>
+                    <input
+                        type="text" name="name"
+                        id="name" data-testid="name"
+                    >
+                </p>
+                <p>
+                    <label for="description">Description: </label>
+                    <input
+                        type="text" name="description"
+                        id="description" data-testid="description"
+                    >
+                </p>
+                <p>
+                    <label for="price_per_night">Price per night: </label>
+                    <input
+                        type="number" value="price_per_night"
+                        id="price_per_night" data-testid="price_per_night"
+                    >
+                </p>
+                <p>
+                    <label for="first_available_night">First available night: </label>
+                    <input
+                        type="date" value="first_available_night" min="{{ current_date }}"
+                        id="first_available_night" data-testid="first_available_night"
+                    >
+                </p>
+                <p>
+                    <label for="last_available_night">Last available night: </label>
+                    <input
+                        type="date" value="last_available_night" min="{{ current_date }}"
+                        id="last_available_night" data-testid="last_available_night"
+                    >
+                </p>
+                <p>
+                    <input type="submit" value="Submit form">
+            </form>
+        {% endif %}
+    </body>
+</html>
