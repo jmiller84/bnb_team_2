@@ -63,6 +63,6 @@ def apply_signup_routes(app):
             session['username'] = new_user.username
             return redirect(f"/users/{session['user_id']}")
         return render_template(
-            'login.html',
+            'signup.html',
             errors=error_messages
         ), 400

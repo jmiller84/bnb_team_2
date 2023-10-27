@@ -3,17 +3,21 @@
     <head>
         <meta charset="utf-8">
         <title>Create your MBnB account</title>
+        <link rel="stylesheet" type="text/css" href="static/styles.css">
     </head>
     <body>
+        <p><a href="/">Back to homepage</a></p>
         {% if user_is_logged_in %}
             <p data-testid="already-logged-in-message">
                 You are already logged in.
                 If you are trying to create a new account,
-                please log out first.
+                please <a href="/logout">log out</a> first.
             </p>
         {% else %}
-            <h1>Enter the username and password you would like to use</h1>
+            <h1>Sign up to MBnB</h1>
+            <p>Enter the username and password you would like to use.</p>
             <p>Your password should be at least 8 characters long.</p>
+            <p>Useful note: users cannot use a username already in use by another user.</p>
             <form action="/signup" method="post">
                 {% if errors %}
                     <p data-testid="error-details">
