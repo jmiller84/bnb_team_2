@@ -17,7 +17,8 @@ def apply_user_page_routes(app):
             {'booking_id': row['booking_id'],
             'space_name': row['name'],
             'booking_date': (row['date']).strftime("%d %B %Y"),
-            'price': row['price'], 'confirmed':row['confirmed']} for row in rows]
+            'price': row['price'],
+            'confirmed': row['confirmed']} for row in rows]
         booking_repository = BookingRepository(connection)
         booking_requests = booking_repository.find_all_unconfirmed_booking_requests(user_id)
 
