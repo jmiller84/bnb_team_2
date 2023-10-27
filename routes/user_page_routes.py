@@ -11,8 +11,15 @@ def apply_user_page_routes(app):
     def view_user_bookings(user_id):
         connection = get_flask_database_connection(app)
         repository = UserRepository(connection)
+
+        try:
+            user = repository.find_user_by_user_id(user_id)
+        except IndexError:
+            # => No user with the given id exists.
+            return render_template('error_user_not_found.html', user_id=user_id), 404
+        username = user.username
+
         rows = repository.find_bookings_by_user_id_with_space_info_as_dictionary(user_id)
-        username = rows[0]['username']
         booking_details = [
             {'booking_id': row['booking_id'],
             'space_name': row['name'],
