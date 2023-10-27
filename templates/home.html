@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <div class="navigation" align="right">
-        {% if user_id %}
-        <p><a href="/users/{{ user_id }}">My Profile</a></p>
-        <p><a href="/logout">Logout</a></p>
-        {% else %}
-        <p><a href="/login">Login</a></p>
-        <p><a href="/signup">Create an account</a></p>
-        {% endif %}
-    </div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MBnB Home Page</title>
 </head>
 <body>
-    <h1>MBnB</h1>
-
-    <h2>Spaces</h2>
-    {% for space in spaces %}
-    <div class="space-container">
-        
-        <div class="space-header"><h2>{{space.name}}</h2></div>
-        <div class="space-description">{{space.description}}</div>
-        <div class="space-price">From £{{space.price}} per night!</div>
-        <br>
-        {% if session_active == True %}
-        <form action="/" method="POST">
-            <button type="submit" name="book_now_button" value="{{space.id}}">Book Now!</button><br>
-        </form>
-        <br>
-    
+    <div class="navigation" style="text-align: right; padding: 10px;">
+        {% if user_id %}
+            <p><a href="/users/{{ user_id }}">My Profile</a></p>
+            <p><a href="/logout">Logout</a></p>
+        {% else %}
+            <p><a href="/login">Login</a></p>
+            <p><a href="/signup">Create an account</a></p>
         {% endif %}
     </div>
-    {% endfor %}
+
+    <h1 style="text-align: center; background-color: #3399FF; color: white; padding: 10px;">MBnB</h1>
+
+    <h2 style="text-align: center;">Spaces</h2>
+    <div class="space-list">
+        {% for space in spaces %}
+            <div class="space-container" style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
+                <div class="space-header">
+                    <h2>{{ space.name }}</h2>
+                </div>
+                <div class="space-description">
+                    {{ space.description }}
+                </div>
+                <div class="space-price">
+                    From £{{ space.price }} per night!
+                </div>
+                {% if session_active == True %}
+                    <form action="/" method="POST" style="text-align: center;">
+                        <button type="submit" name="book_now_button" value="{{ space.id }}" style="background-color: #3399FF; color: white; padding: 5px 10px; border: none; cursor: pointer;">Book Now!</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
 </body>
 </html>

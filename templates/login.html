@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Log in to MBnB</title>
-    </head>
-    <body>
-        <h1>Enter your login details</h1>
+<head>
+    <meta charset="utf-8">
+    <title style="font-size: 24px; text-align: center;">Log in to MBnB</title>
+</head>
+<body style="font-family: Arial, sans-serif; text-align: center; background-color: #f7f7f7; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; padding: 0;">
+    <div style="background-color: #fff; border: 1px solid #ccc; border-radius: 5px; padding: 20px; width: 300px;">
+        <h1 style="color: #333; margin: 0 0 20px;">Enter your login details</h1>
         <form action="/login" method="post">
             {% if errors %}
-                <p data-testid="error-details">
+                <p data-testid="error-details" style="color: #ff0000; font-weight: bold; text-align: left;">
                     Your login submission had the following errors:
                 </p>
-                <p><ul>
+                <ul style="color: #ff0000; list-style: square; margin: 0; padding-left: 20px; text-align: left;">
                     {% for error in errors %}
                         <li>{{ error }}</li>
                     {% endfor %}
-                </ul></p>
+                </ul>
             {% endif %}
-            <p>
-                <label for="username">Username: </label>
-                <input type="text" name="username" id="username" data-testid="username">
+            <p style="text-align: left;">
+                <label for="username" style="font-weight: bold; display: block; margin-top: 10px;">Username:</label>
+                <input type="text" name="username" id="username" data-testid="username" style="width: 270px; padding: 10px; margin-top: 5px;">
             </p>
-            <p>
-                <label for="password">Password: </label>
-                <input type="password" name="password" id="password" data-testid="password">
+            <p style="text-align: left;">
+                <label for="password" style="font-weight: bold; display: block; margin-top: 10px;">Password:</label>
+                <input type="password" name="password" id="password" data-testid="password" style="width: 270px; padding: 10px; margin-top: 5px;">
             </p>
-            <p>
-                <input type="submit" value="Submit form">
+            <p style="text-align: left;">
+                <input type="submit" value="Submit form" style="background-color: #3399FF; color: #fff; padding: 10px; border: none; cursor: pointer; width: 100%;">
             </p>
         </form>
-    </body>
+    </div>
+</body>
 </html>
