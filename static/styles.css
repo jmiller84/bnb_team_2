@@ -1,13 +1,19 @@
 body {
     background-color:#f77367;
-    @font-face {
-        font-family: myFirstFont;
-        src: url(sansation_bold.woff);
-    }
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-title {
+    font-size: 500%;
+    font-family: cursive;
 }
 
 .space-header {
     color:rgb(246, 232, 255);
     font-weight: bold;
+}
 
+.space-container {
+        border: 2px solid #FCF0CC;
+        border-radius: 2px; 
 }
