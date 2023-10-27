@@ -3,12 +3,20 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My page: {{username}}</title>
+    <title>
+        {% if user_id == logged_in_id %}
+            My page
+        {% else %}
+            User page
+        {% endif %}
+        : {{username}}
+    </title>
     <link rel="stylesheet" type="text/css" href="../static/styles.css">
     <p><a href="/">See More Spaces and Make a New Booking!</a></p>
 
     </head>
     <body>
+        {% if user_id == logged_in_id %}
         <a href="/users/{{user_id}}/create_space">List a new space</a>
         <h1>{{username}}'s Bookings for upcoming holidays</h1>
 
@@ -41,5 +49,8 @@
             </div>
             {% endfor %}
         </div>
+        {% else %}
+        <h1>{{ username }}'s page</h1>
+        {% endif %}
     </body>
 </html>

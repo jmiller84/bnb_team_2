@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, session
 from lib.database_connection import get_flask_database_connection
 from lib.booking_repository import BookingRepository
 from lib.space_repository import SpaceRepository
@@ -11,6 +11,8 @@ def apply_user_page_routes(app):
     def view_user_bookings(user_id):
         connection = get_flask_database_connection(app)
         repository = UserRepository(connection)
+        logged_in_id = session.get('user_id', None)
+        session_active = (logged_in_id is not None)
 
         try:
             user = repository.find_user_by_user_id(user_id)
@@ -29,7 +31,12 @@ def apply_user_page_routes(app):
         booking_repository = BookingRepository(connection)
         booking_requests = booking_repository.find_all_unconfirmed_booking_requests(user_id)
 
-        return render_template('user_page.html', username=username, user_id=user_id, bookings=booking_details, booking_requests=booking_requests)
+        return render_template(
+            'user_page.html', 
+            username=username, user_id=user_id,
+            bookings=booking_details, booking_requests=booking_requests,
+            logged_in_id=logged_in_id, session_active=session_active
+            )
     
     @app.route('/users/<int:user_id>', methods=["POST"]) 
     def set_status_of_request(user_id):

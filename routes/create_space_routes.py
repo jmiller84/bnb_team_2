@@ -24,6 +24,9 @@ def apply_create_space_routes(app):
 
         connection = get_flask_database_connection(app)
         space_repository = SpaceRepository(connection)
+        logged_in_id = session.get('user_id', None)
+        if logged_in_id != user_id:
+            return render_template('error_must_log_in_first.html'), 401
         space_title = request.form['name']
         space_description = request.form['description']
         print(space_description)
