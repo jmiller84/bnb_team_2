@@ -21,7 +21,7 @@ def test_list_all_spaces(db_connection):
         Space(2, 'Villa', 'Nice', 'France', 'A mediterranean villa with a sea view', 70, 2),
         Space(3, 'Alpine lodge', 'Brig-Glis', 'Switzerland', 'A cosy ski lodge with wood-burning fire', 95, 1),
         Space(4, 'Studio Apartment', 'New York', 'USA', 'A cool apartment in the centre of the bustling city', 102, 3),
-        Space(5, 'Tent', 'Tenby', 'UK', 'A tent in a field of cows', 10, 2)
+        Space(5, 'Tent', 'Tenby', 'UK', 'A 5 metre, cotton canvas bell tent which can comfortably accommodate up to 4 people with any combination of single beds or double bed, duvets and pillows with linen, rugs, blankets, cushions, lighting, side tables, seating and plants.', 50, 2)
     ]
 
 
@@ -35,7 +35,7 @@ def test_create_a_new_space(db_connection):
         Space(2, 'Villa', 'Nice', 'France', 'A mediterranean villa with a sea view', 70, 2),
         Space(3, 'Alpine lodge', 'Brig-Glis', 'Switzerland', 'A cosy ski lodge with wood-burning fire', 95, 1),
         Space(4, 'Studio Apartment', 'New York', 'USA', 'A cool apartment in the centre of the bustling city', 102, 3),
-        Space(5, 'Tent', 'Tenby', 'UK', 'A tent in a field of cows', 10, 2),
+        Space(5, 'Tent', 'Tenby', 'UK', 'A 5 metre, cotton canvas bell tent which can comfortably accommodate up to 4 people with any combination of single beds or double bed, duvets and pillows with linen, rugs, blankets, cushions, lighting, side tables, seating and plants.', 50, 2),
         Space(6, 'Cabin', 'Tampaksiring', 'Indonesia', 'Located just a 20-minute scooter ride from the vibrant centre of Ubud, the Dome is a newly built one bedroom bamboo cabin situated within the Eco Six Resort.', 230, 3)
     ]
 
