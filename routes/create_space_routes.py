@@ -13,9 +13,6 @@ def apply_create_space_routes(app):
     @app.route('/users/<int:user_id>/create_space', methods=["GET"]) 
     def get_create_space_form(user_id):
 
-
-
-        
         return render_template('spaces/create_space.html', user_is_logged_in = True, errors = None, user_id=user_id, current_date = str(datetime.today()))
     
 
@@ -37,7 +34,7 @@ def apply_create_space_routes(app):
                 name = space_title,
                 description = space_description,
                 price = float(space_price),
-                owner_id = user_id
+                host_id = user_id
                 ))
 
         booking_repository = BookingRepository(connection)
