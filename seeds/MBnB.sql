@@ -17,10 +17,12 @@ CREATE SEQUENCE IF NOT EXISTS spaces_id_seq;
 CREATE TABLE spaces (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
+    area VARCHAR(255),
+    country VARCHAR(255),
     description VARCHAR(255),
-    price DECIMAL(6,2),
-    owner_id int,
-    constraint fk_user foreign key (owner_id)
+    price int,
+    host_id int,
+    constraint fk_user foreign key (host_id)
     references users(id) ON DELETE CASCADE
 );
 
@@ -42,11 +44,11 @@ INSERT INTO users (username, password) VALUES ('pikachu82', 'thunderbolt*');
 INSERT INTO users (username, password) VALUES ('boardgameking', 'catan1234!');
 INSERT INTO users (username, password) VALUES ('yogaguru', 'downwarddog!');
 
-INSERT INTO spaces (name, description, price, owner_id) VALUES ('Cottage', 'A nice cottage', 27.50, 4);
-INSERT INTO spaces (name, description, price, owner_id) VALUES ('Villa', 'A mediterranean villa with a sea view', 70.00, 2);
-INSERT INTO spaces (name, description, price, owner_id) VALUES ('Alpine lodge', 'A cosy ski lodge with wood-burning fire', 95.00, 1);
-INSERT INTO spaces (name, description, price, owner_id) VALUES ('Studio Apartment', 'A cool apartment in the centre of the bustling city', 102.00, 3);
-INSERT INTO spaces (name, description, price, owner_id) VALUES ('Tent', 'A tent in a field of cows', 10.00, 2);
+INSERT INTO spaces (name, area, country, description, price, host_id) VALUES ('Cottage', 'Wimborne', 'UK', 'A nice cottage', 27, 4);
+INSERT INTO spaces (name, area, country, description, price, host_id) VALUES ('Villa', 'Nice', 'France', 'A mediterranean villa with a sea view', 70, 2);
+INSERT INTO spaces (name, area, country, description, price, host_id) VALUES ('Alpine lodge', 'Brig-Glis', 'Switzerland', 'A cosy ski lodge with wood-burning fire', 95, 1);
+INSERT INTO spaces (name, area, country, description, price, host_id) VALUES ('Studio Apartment', 'New York', 'USA', 'A cool apartment in the centre of the bustling city', 102, 3);
+INSERT INTO spaces (name, area, country, description, price, host_id) VALUES ('Tent', 'Tenby', 'UK', 'A tent in a field of cows', 10, 2);
 
 INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (1, 1, '2023-10-30', True);
 INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (2, 1, '2023-10-25', True);
