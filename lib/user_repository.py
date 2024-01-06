@@ -35,7 +35,7 @@ class UserRepository:
                 spaces.name,
                 spaces.description,
                 spaces.price,
-                spaces.owner_id,
+                spaces.host_id,
                 bookings.id AS booking_id,
                 bookings.date,
                 bookings.confirmed
@@ -44,7 +44,7 @@ class UserRepository:
             JOIN
                 bookings ON bookings.user_id = users.id
             JOIN spaces ON bookings.space_id = spaces.id
-            WHERE users.id = %s AND spaces.owner_id != user_id
+            WHERE users.id = %s AND spaces.host_id != user_id
         """
         results = self._connection.execute(sql_query, [user_id])
         return results

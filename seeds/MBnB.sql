@@ -41,21 +41,21 @@ CREATE TABLE bookings (
     references spaces(id) ON DELETE CASCADE
 );
 
-INSERT INTO users (username, password) VALUES ('topdev', 'makers456!');
-INSERT INTO users (username, password) VALUES ('pikachu82', 'thunderbolt*');
-INSERT INTO users (username, password) VALUES ('boardgameking', 'catan1234!');
-INSERT INTO users (username, password) VALUES ('yogaguru', 'downwarddog!');
+INSERT INTO users (username, password) VALUES ('WillPat', 'makers456!');
+INSERT INTO users (username, password) VALUES ('KatyP82', 'thunderbolt*');
+INSERT INTO users (username, password) VALUES ('TomR', 'catan1234!');
+INSERT INTO users (username, password) VALUES ('BusyLizzie', 'downwarddog!');
 
 INSERT INTO spaces (name, area, country, description, price, host_id, image_url, max_guests) VALUES ('Cottage', 'Wimborne', 'UK', 'This chocolate box 16th Century Grade II listed cottage is Full of the character you would expect from such an old property yet with just the right degree of up-dating to give you a comfortable stay: the perfect country retreat', 27, 4, 'images/cottage.jpeg', 6);
 INSERT INTO spaces (name, area, country, description, price, host_id, image_url, max_guests) VALUES ('Villa', 'Nice', 'France', 'In the heart of local life, this charming villa has superb panoramic views of the sea. You have the beach within easy reach, but are not too far away from the city to enjoy all the amenities Nice has to offer.', 70, 2, 'images/mediterraneanVilla.jpeg', 5);
 INSERT INTO spaces (name, area, country, description, price, host_id, image_url, max_guests) VALUES ('Alpine lodge', 'Brig-Glis', 'Switzerland', 'Welcome to our lovely cosy chalet. We are located in a quiet car free village, only reachable by cablecar. Enjoy an incredible view of stunning mountains from your bedroom. Perfect for hiking, skiing and relaxing.', 95, 1, 'images/snowyCabin.jpeg', 6);
-INSERT INTO spaces (name, area, country, description, price, host_id, image_url, max_guests) VALUES ('Studio Apartment', 'New York', 'USA', 'Ultra Luxury 1 Bedroom in the heart of NYC! Located on the best block in Manhattan! Central to all shopping, restaurants, and attractions : Hudson Yards, Times Square, Theater District, High Line, and Hudson River Park! Highrise Apartment with Floor to Ceiling windows provide a breathtaking view of the River and Skyline', 102, 3, 'images/studioApartment.jpeg', 2);
-INSERT INTO spaces (name, area, country, description, price, host_id, image_url, max_guests) VALUES ('Tent', 'Tenby', 'UK', 'A 5 metre, cotton canvas bell tent which can comfortably accommodate up to 4 people with any combination of single beds or double bed, duvets and pillows with linen, rugs, blankets, cushions, lighting, side tables, seating and plants.', 50, 2, 'images/tent.jpeg', 3);
+INSERT INTO spaces (name, area, country, description, price, host_id, image_url, max_guests) VALUES ('Studio Apartment', 'New York', 'USA', 'Luxury 1 Bedroom in the heart of NYC! Central to all shopping, restaurants, and attractions. Highrise Apartment with Floor to Ceiling windows provide a breathtaking view of the River and Skyline', 102, 2, 'images/studioApartment.jpeg', 2);
+INSERT INTO spaces (name, area, country, description, price, host_id, image_url, max_guests) VALUES ('Tent', 'Tenby', 'UK', 'A 5 metre, cotton canvas bell tent which can comfortably accommodate up to 4 people with any combination of single beds or double bed, duvets and pillows with linen, rugs, blankets, cushions, lighting, side tables, seating and plants.', 50, 2, 'images/tent.jpeg', 4);
 
-INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (1, 1, '2023-10-30', True);
-INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (2, 1, '2023-10-25', True);
-INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (2, 3, '2023-10-10', True);
-INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (3, 1, '2023-10-06', False);
-INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (1, 2, '2023-10-07', False);
-INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (4, 2, '2023-10-15', False);
-INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (4, 3, '2023-10-12', False);
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (1, 1, '2024-01-30', True);
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (2, 1, '2024-01-25', True);
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (2, 3, '2024-01-10', True);
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (3, 1, '2024-01-06', False);
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (1, 2, '2024-01-07', False);
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (4, 2, '2024-01-15', False);
+INSERT INTO bookings (user_id, space_id, date, confirmed) VALUES (4, 3, '2024-01-12', False);
